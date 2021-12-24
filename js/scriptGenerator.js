@@ -68,21 +68,21 @@ const generate = () => {
   sql += 'select\n';
   sql += `'INSERT INTO "${dstTable}"(`;
   // 添加目标字段
-  sql += `"${srcList[0]}"`;  
-  for (let i = 1; i < srcList.length; ++i) {
-    sql += `, "${srcList[i]}"`;  
+  sql += `"${dstList[0]}"`;  
+  for (let i = 1; i < dstList.length; ++i) {
+    sql += `, "${dstList[i]}"`;  
   }
   sql += `)' + \n`;
-  sql += `'VALUES(' + \n`;
+  sql += `' VALUES (' + \n`;
 
-  // 添加原始字段
-  sql += `ISNULL(CAST(${dstList[0]} AS NVARCHAR), ''),  +\n`;  
-  for (let i = 1; i < dstList.length; ++i) {
-    sql += `'ISNULL(CAST(${dstList[i]} AS NVARCHAR), ''),' + \n`;
+  // 添加源字段
+  sql += `ISNULL(CAST(${srcList[0]} AS NVARCHAR), '') +\n`;  
+  for (let i = 1; i < srcList.length; ++i) {
+    sql += `', '' + ISNULL(CAST(${srcList[i]} AS NVARCHAR), '') + '\n`;
   }
 
-  sql += `');', * + \n`;
-  sql += `'FROM ${srcTable};'`;
+  sql += `');', * \n`;
+  sql += `FROM ${srcTable};`;
 
   $('.sql').append(sql);
 }
