@@ -7,4 +7,3 @@ select
 +', ''N'');'
 ,* 
 from tJISLineStation_WV
-

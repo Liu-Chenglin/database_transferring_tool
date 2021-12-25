@@ -2,35 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css"> 
   </head>
 
   <body>
-    <div class="table">
+    <div class="container">
       <label for="src">源表：</label>
       <input type="text" id="src" name="src" required>
       
       <label for="dst">目标表：</label>
       <input type="text" id="dst" name="dst" required>
-    </div>
 
-    <div class="fields" id="fields">
-      <div class="field" id="field-1">
-        <label for="srcField">源字段：</label>
-        <input type="text" id="src" name="srcField" required>
-        
-        <label for="dstField">目标字段：</label>
-        <input type="text" id="dst" name="dstField" required>
-        <button onclick="addNewField()">添加字段</button>
+      <div class="table fields" id="fields">
+        <div class="field" id="field-1">
+          <input type="text" id="src" name="srcField" placeholder="源字段" required>
+          <input type="text" id="dst" name="dstField" placeholder="目标字段" required>
+          <button onclick="addNewField()">添加字段</button>
+        </div>
       </div>
-    </div>
 
-    <div class="generate-button">
-      <button onclick="generate()">生成脚本</button>
-    </div>
+      <div class="generate-button">
+        <button type="button" class="btn btn-primary" onclick="generate()">生成脚本</button>
+      </div>
 
-    <div class="sql-script-area">
-      <textarea class="sql" rows="100" cols="80"></textarea>
+      <div class="sql-script-area">
+        <textarea class="sql" rows="100" cols="80"></textarea>
+      </div>
     </div>
   </body>
   <script type="text/javascript" src="./js/scriptGenerator.js"></script>
