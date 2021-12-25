@@ -1,14 +1,14 @@
 // 添加新的字段mapping
 const addNewField = () => {
   let parentTag = $('#fields');
-  let $newField = $('<div class="field"></div>');
+  let $newField = $('<div class="field row"></div>');
 
   // 源字段
-  const $newSrcField = $('<input type="text" id="src" name="srcField" placeholder="源字段"/>');
+  const $newSrcField = $('<div class="col-5"><input type="text" id="src" class="form-control" placeholder="源字段"/></div>');
   // 目标字段
-  const $newDstField = $('<input type="text" id="src" name="dstField" placeholder="目标字段"/>');
+  const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control" placeholder="目标字段"/></div>');
   // 新增按钮
-  const $newButton = $('<button onclick="addNewField()">新增字段</button>');
+  const $newButton = $('<div class="col-2"><button class="btn btn-outline-primary" onclick="addNewField()">新增字段</button></div>');
 
   $newField.append($newSrcField);
   $newField.append($newDstField);
