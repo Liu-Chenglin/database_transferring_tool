@@ -8,7 +8,7 @@ const addNewField = () => {
   // 目标字段
   const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control" placeholder="目标字段"/></div>');
   // 新增按钮
-  const $newButton = $('<div class="col-2"><button class="btn btn-outline-primary" onclick="addNewField()">新增字段</button></div>');
+  const $newButton = $('<div class="col-2"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">新增字段</button></div>');
 
   $newField.append($newSrcField);
   $newField.append($newDstField);
