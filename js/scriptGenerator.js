@@ -12,18 +12,22 @@ const showAlert = () => {
 /* 添加新的字段mapping */
 const addNewField = () => {
   let parentTag = $('.field');
+  const maxId =  $('.field').children().last().attr('id').slice(-1);  // 获取最大的id
+  const id = parseInt(maxId) + 1;
 
   // 源字段
-  const $newSrcField = $('<div class="col-5"><input type="text" id="src" class="form-control src-field-input" placeholder="源字段"/></div>');
+  const $newSrcField = $(`<div id="src-${id}" class="col-5"><input type="text" id="src" class="form-control src-field-input" placeholder="源字段"/></div>`);
   // 目标字段
-  const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control dst-field-input" placeholder="目标字段"/></div>');
+  const $newDstField = $(`<div id="dst-${id}" class="col-5"><input type="text" id="dst" class="form-control dst-field-input" placeholder="目标字段"/></div>`);
   // 新增按钮
-  const $newButton = $('<div class="col-2"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button></div>');
-  // TODO:删除按钮
-  const $deleteButton = null;
+  const $newButton = $(`<div id="add-${id}" class="col-1"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button></div>`);
+  // 删除按钮
+  const $deleteButton = $(`<div id="del-${id}" class="col-1"><button type="button" class="btn btn btn-danger" onclick="deleteRow(${id})">×</button></div>`);
+  
   parentTag.append($newSrcField);
   parentTag.append($newDstField);
   parentTag.append($newButton);
+  parentTag.append($deleteButton);
 }
 
 /* 生成sql脚本 */
@@ -102,5 +106,8 @@ const copyScript = () => {
 
 /* 删除一行 */
 const deleteRow = (id) => {
-  alert("正在开发中...");
+  $(`#src-${id}`).remove();
+  $(`#dst-${id}`).remove();
+  $(`#add-${id}`).remove();
+  $(`#del-${id}`).remove();
 }

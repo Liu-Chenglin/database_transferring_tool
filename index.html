@@ -15,7 +15,7 @@
       <form class="row g-3">
         <div class="col-10">
           <label for="srcTable" class="form-label">源表：</label>
-          <input type="text" class="form-control" id="srcTable" required>
+          <input type="text" class="form-control" id="srcTable">
         </div>
 
         <div class="col-10">
@@ -25,17 +25,17 @@
 
         <div class="fields" id="fields">
           <div class="field row">
-            <div class="col-5">
+            <div id="src-0" class="col-5">
               <input type="text" class="form-control src-field-input" placeholder="源字段">
             </div>
-            <div class="col-5">
+            <div id="dst-0" class="col-5">
               <input type="text" class="form-control dst-field-input" placeholder="目标字段">
             </div>
-            <div class="col-1">
+            <div id="add-0" class="col-1">
               <button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button>
             </div>
-            <div class="col-1">
-              <button type="button" class="btn btn btn-danger" onclick="deleteRow()">×</button>
+            <div id="del-0" class="col-1">
+              <button type="button" class="btn btn btn-danger" onclick="deleteRow(0)">×</button>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="sql-script-area col-10">
-          <textarea class="sql col-12" rows="25"></textarea>
+          <textarea class="sql col-12" rows="20"></textarea>
         </div>
       </form>
     </div>
