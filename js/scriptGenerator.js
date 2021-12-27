@@ -1,3 +1,14 @@
+
+$(document).ready(function() {
+  $(".alert-success").hide();
+});
+
+const showAlert = () => {
+  $(".alert-success").fadeTo(3000, 500).fadeOut(500, function() {
+    $(".alert-success").fadeOut(500);
+  });
+}
+
 /* 添加新的字段mapping */
 const addNewField = () => {
   let parentTag = $('.field');
@@ -8,7 +19,8 @@ const addNewField = () => {
   const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control dst-field-input" placeholder="目标字段"/></div>');
   // 新增按钮
   const $newButton = $('<div class="col-2"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button></div>');
-
+  // TODO:删除按钮
+  const $deleteButton = null;
   parentTag.append($newSrcField);
   parentTag.append($newDstField);
   parentTag.append($newButton);
@@ -83,7 +95,8 @@ const copyScript = () => {
   else {
     document.getElementsByClassName('sql')[0].select();
     document.execCommand("copy");
-    alert('脚本已复制到剪切板');
+    showAlert();
+
   }
 }
 

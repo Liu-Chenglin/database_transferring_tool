@@ -1,13 +1,32 @@
-/* 源字段和目标字段 */
-.src-field-input, .dst-field-input {
+.title {
+    background-color: #ade8f4;
+    color: #ffffff;
+    padding-left: 15px;
+    font-size: 20pt;
     margin-bottom: 10px;
 }
 
-.btn {
-    margin-left: 5px;
+/* 源字段和目标字段 */
+.src-field-input, .dst-field-input {
+    margin-bottom: 5px;
 }
 
 /* 复制脚本按钮 */
 .btn-copy-script {
     margin-left: 0;
+}
+
+.form-check-label {
+    font-size: 1pt;
+}
+
+.alert-box {
+    height: 10px;
+}
+
+.alert {
+    height: 20px;
+    font-size:6pt;
+    font-weight: bold;
+    padding: 1px
 }
