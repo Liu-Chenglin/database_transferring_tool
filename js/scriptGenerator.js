@@ -1,35 +1,46 @@
-// 添加新的字段mapping
+/* 添加新的字段mapping */
 const addNewField = () => {
-  let parentTag = $('#fields');
-  let $newField = $('<div class="field row"></div>');
+  let parentTag = $('.field');
 
   // 源字段
-  const $newSrcField = $('<div class="col-5"><input type="text" id="src" class="form-control" placeholder="源字段"/></div>');
+  const $newSrcField = $('<div class="col-5"><input type="text" id="src" class="form-control src-field-input" placeholder="源字段"/></div>');
   // 目标字段
-  const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control" placeholder="目标字段"/></div>');
+  const $newDstField = $('<div class="col-5"><input type="text" id="dst" class="form-control dst-field-input" placeholder="目标字段"/></div>');
   // 新增按钮
-  const $newButton = $('<div class="col-2"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">新增字段</button></div>');
+  const $newButton = $('<div class="col-2"><button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button></div>');
 
-  $newField.append($newSrcField);
-  $newField.append($newDstField);
-  $newField.append($newButton);
-
-  parentTag.append($newField);
+  parentTag.append($newSrcField);
+  parentTag.append($newDstField);
+  parentTag.append($newButton);
 }
 
-// 生成sql脚本
+/* 生成sql脚本 */
 const generate = () => {
-  const tableInputs = $('.table').find('input');
-  const srcTable = tableInputs[0].value;
-  const dstTable = tableInputs[1].value;
+  const srcTable = $('#srcTable').val();
+  const dstTable = $('#dstTable').val();
   let srcList = [];
   let dstList = [];
+  let deleteMarkFlag = false;
 
-  // 循环所有的字段添加到列表中
-  const fields = $('.fields').find('.field');
-  for (let i = 0; i < fields.length; i++) {
-    srcList.push(fields[i].children[0].value);
-    dstList.push(fields[i].children[1].value);
+  if ($('#addDeleteMark').is(":checked")) {
+    deleteMarkFlag = true;
+  }
+
+  // 获取源字段列表
+  const srcFields = $('.src-field-input');
+  for (let i = 0; i < srcFields.length; i++) {
+    srcList.push(srcFields[i].value);
+  }
+
+  // 获取目标字段列表
+  const dstFields = $('.dst-field-input');
+  for (let i = 0; i < dstFields.length; i++) {
+    dstList.push(dstFields[i].value);
+  }
+
+  if (dstList.length != srcList.length) {
+    alert("请输入完整的字段映射关系");
+    return;
   }
 
   let sql = '';
@@ -42,17 +53,41 @@ const generate = () => {
   for (let i = 1; i < dstList.length; ++i) {
     sql += `, "${dstList[i]}"`;  
   }
+  if (deleteMarkFlag) {
+    sql += ', "DELETE_MARK"';
+  }
   sql += `)' + \n`;
   sql += `' VALUES (' + \n`;
 
   // 添加源字段
-  sql += `'"' + ISNULL(CAST(${srcList[0]} AS NVARCHAR), '') + '"' + `;  
+  sql += `'''' + ISNULL(CAST(${srcList[0]} AS NVARCHAR), '') + '''' + `;  
   for (let i = 1; i < srcList.length; ++i) {
-    sql += `', ' + \n'"' + ISNULL(CAST(${srcList[i]} AS NVARCHAR), '') + '"'\n`;
+    sql += `', ' + \n'''' + ISNULL(CAST(${srcList[i]} AS NVARCHAR), '') + '''' + `;
   }
-
+  if (deleteMarkFlag) {
+    sql += `\n', ' + '''N''' + `;
+  }
   sql += `');', * \n`;
   sql += `FROM ${srcTable}`;
 
   $('.sql').append(sql);
+}
+
+/* 复制sql脚本到剪切板 */
+const copyScript = () => {
+  const $sql = $('.sql').val();
+
+  if (''  === $sql) {
+    alert('当前没有脚本可以复制，请先生成脚本!');
+  }
+  else {
+    document.getElementsByClassName('sql')[0].select();
+    document.execCommand("copy");
+    alert('脚本已复制到剪切板');
+  }
+}
+
+/* 删除一行 */
+const deleteRow = (id) => {
+  alert("正在开发中...");
 }

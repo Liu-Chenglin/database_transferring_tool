@@ -11,35 +11,46 @@
     <div class="container">
       <form class="row g-3">
         <div class="col-10">
-          <label for="src" class="form-label">源表：</label>
-          <input type="text" class="form-control" id="src" name="src">
+          <label for="srcTable" class="form-label">源表：</label>
+          <input type="text" class="form-control" id="srcTable" required>
         </div>
 
         <div class="col-10">
-          <label for="dst" class="form-label">目标表：</label>
-          <input type="text" class="form-control" id="dst" name="dst">
+          <label for="dstTable" class="form-label">目标表：</label>
+          <input type="text" class="form-control" id="dstTable">
         </div>
 
-        <div class="table fields" id="fields">
+        <div class="fields" id="fields">
           <div class="field row">
             <div class="col-5">
-              <input type="text" class="form-control" placeholder="源字段">
+              <input type="text" class="form-control src-field-input" placeholder="源字段">
             </div>
             <div class="col-5">
-              <input type="text" class="form-control" placeholder="目标字段">
+              <input type="text" class="form-control dst-field-input" placeholder="目标字段">
             </div>
-            <div class="col-2">
-              <button type="button" class="btn btn-outline-primary" onclick="addNewField()">添加字段</button>
+            <div class="col-1">
+              <button type="button" class="btn btn-outline-primary" onclick="addNewField()">+</button>
+            </div>
+            <div class="col-1">
+              <button type="button" class="btn btn btn-danger" onclick="deleteRow()">×</button>
             </div>
           </div>
         </div>
-  
-        <div class="generate-button">
-          <button type="button" class="btn btn-primary" onclick="generate()">生成脚本</button>
+
+        <div class="col-10">
+          <button type="button" class="btn btn-outline-success btn-copy-script" onclick="copyScript()">复制脚本</button>
+          <button type="button" class="btn btn-primary float-end" onclick="generate()">生成脚本</button>
         </div>
-  
-        <div class="sql-script-area">
-          <textarea class="sql" rows="100" cols="100"></textarea>
+
+        <div class="col-2">
+          <input class="form-check-input" type="checkbox" value="" id="addDeleteMark">
+          <label class="form-check-label" for="addDeleteMark">
+            添加DELETE_MARK
+          </label>
+        </div>
+
+        <div class="sql-script-area col-10">
+          <textarea class="sql col-12" rows="25"></textarea>
         </div>
       </form>
     </div>

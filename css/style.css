@@ -1,7 +1,13 @@
-.field {
-    margin-bottom: 5px;
+/* 源字段和目标字段 */
+.src-field-input, .dst-field-input {
+    margin-bottom: 10px;
 }
 
-.table th, .table td { 
-    border-top: none !important; 
+.btn {
+    margin-left: 5px;
+}
+
+/* 复制脚本按钮 */
+.btn-copy-script {
+    margin-left: 0;
 }
