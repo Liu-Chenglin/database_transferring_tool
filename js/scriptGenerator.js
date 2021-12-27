@@ -111,3 +111,10 @@ const deleteRow = (id) => {
   $(`#add-${id}`).remove();
   $(`#del-${id}`).remove();
 }
+
+/* 添加shortcut listener */
+document.onkeydown = function(e) {
+  if(e.ctrlKey && e.shiftKey && e.key == 'w') {
+      addNewField();
+  }
+}
