@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>数据库迁移脚本生成器</title>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <link href="/css/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css"> 
   </head>
@@ -11,12 +12,16 @@
   <body>
     <div class="container">
       <div class="col-10 title">
-        数据库迁移脚本生成器
+        <i class="bi bi-box-seam"></i>数据库迁移脚本生成器
       </div>
+      <div class="tips">
+        <i class="bi bi-info-square"></i>Tips: 使用alt + a可以快速创建一组字段
+      </div>
+
       <form class="row g-3">
         <div class="col-10">
           <label for="srcTable" class="form-label">源表：</label>
-          <input type="text" class="form-control" id="srcTable" autofocus>
+          <input type="text" class="form-control" id="srcTable">
         </div>
 
         <div class="col-10">
@@ -42,8 +47,8 @@
         </div>
 
         <div class="col-10">
-          <button type="button" class="btn btn-outline-success btn-copy-script" onclick="copyScript()">复制脚本</button>
-          <button type="button" class="btn btn-primary float-end" onclick="generate()">生成脚本</button>
+          <button type="button" class="btn btn-outline-success btn-copy-script" onclick="copyScript()">复制脚本<i class="bi bi-clipboard"></i></button>
+          <button type="button" class="btn btn-primary float-end" onclick="generate()">生成脚本<i class="bi bi-terminal-plus"></i></button>
         </div>
 
         <div class="col-2">

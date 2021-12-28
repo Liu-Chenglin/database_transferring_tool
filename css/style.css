@@ -6,6 +6,12 @@
     margin-bottom: 10px;
 }
 
+.tips {
+    font-size: 10pt;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
 /* 源字段和目标字段 */
 .src-field-input, .dst-field-input {
     margin-bottom: 5px;
@@ -29,4 +35,13 @@
     font-size:6pt;
     font-weight: bold;
     padding: 1px
+}
+
+/* 图标 */
+.bi-terminal-plus, .bi-clipboard {
+    margin-left: 3px;
+}
+
+.bi-box-seam, .bi-info-square {
+    margin-right: 3px;
 }

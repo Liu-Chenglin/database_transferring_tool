@@ -16,7 +16,7 @@ const addNewField = () => {
   const id = parseInt(maxId) + 1;
 
   // 源字段
-  const $newSrcField = $(`<div id="src-${id}" class="col-5"><input type="text" id="src" class="form-control src-field-input" placeholder="源字段"/></div>`);
+  const $newSrcField = $(`<div id="src-${id}" class="col-5"><input type="text" id="src" class="form-control src-field-input" placeholder="源字段" autofocus/></div>`);
   // 目标字段
   const $newDstField = $(`<div id="dst-${id}" class="col-5"><input type="text" id="dst" class="form-control dst-field-input" placeholder="目标字段"/></div>`);
   // 新增按钮
@@ -28,6 +28,7 @@ const addNewField = () => {
   parentTag.append($newDstField);
   parentTag.append($newButton);
   parentTag.append($deleteButton);
+  $newSrcField.focus();
 }
 
 /* 生成sql脚本 */
@@ -114,7 +115,9 @@ const deleteRow = (id) => {
 
 /* 添加shortcut listener */
 document.onkeydown = function(e) {
-  if(e.ctrlKey && e.shiftKey && e.key == 'w') {
-      addNewField();
+  if(e.altKey && e.key == 'a') {
+    $('.form-control').blur();
+    $('.form-control').prop('autofocus', false);
+    addNewField();
   }
 }
